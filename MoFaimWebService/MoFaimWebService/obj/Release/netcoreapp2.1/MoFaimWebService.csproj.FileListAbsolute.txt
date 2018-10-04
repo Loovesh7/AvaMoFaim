@@ -1,0 +1,14 @@
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\bin\Release\netcoreapp2.1\MoFaimWebService.deps.json
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\bin\Release\netcoreapp2.1\MoFaimWebService.runtimeconfig.json
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\bin\Release\netcoreapp2.1\MoFaimWebService.runtimeconfig.dev.json
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\bin\Release\netcoreapp2.1\MoFaimWebService.dll
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\bin\Release\netcoreapp2.1\MoFaimWebService.pdb
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.csprojAssemblyReference.cache
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.csproj.CoreCompileInputs.cache
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.RazorAssemblyInfo.cache
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.RazorAssemblyInfo.cs
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.AssemblyInfoInputs.cache
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.AssemblyInfo.cs
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.RazorTargetAssemblyInfo.cache
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.dll
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Release\netcoreapp2.1\MoFaimWebService.pdb
