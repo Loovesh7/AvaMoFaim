@@ -38,10 +38,10 @@ namespace MoFaimWebService.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]UserDto userDto)
+        public IActionResult Authenticate([FromBody] UserDto userDto)
         {
             var user = _userService.Authenticate(userDto.Email, userDto.Password);
-
+           
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
@@ -51,7 +51,8 @@ namespace MoFaimWebService.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.Name.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -66,6 +67,7 @@ namespace MoFaimWebService.Controllers
                 Username = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Role = user.Role.Name,
                 Token = tokenString
             });
         }
@@ -78,7 +80,7 @@ namespace MoFaimWebService.Controllers
             var user = _mapper.Map<User>(userDto);
 
             //Default Role is User
-            user.RoleId = 2;
+           // user.RoleId = 2;
 
             try
             {
@@ -93,6 +95,7 @@ namespace MoFaimWebService.Controllers
             }
         }
 
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet]
         public IActionResult GetAll()
         {

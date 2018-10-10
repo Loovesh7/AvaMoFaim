@@ -12,7 +12,7 @@ namespace MoFaimWebService.Entities
         public string Location { get; set; }
         public string Phone { get; set; }
         public string Details { get; set; }
-        public string Logo { get; set; }
+        public byte[] Logo { get; set; }
         public double Rating { get; set; }
     }
 }

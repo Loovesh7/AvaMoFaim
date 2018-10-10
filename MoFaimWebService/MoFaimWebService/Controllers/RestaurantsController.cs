@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using MoFaimWebService.Dtos;
 using MoFaimWebService.Entities;
 using MoFaimWebService.Helpers;
 using MoFaimWebService.Services;
@@ -36,6 +37,13 @@ namespace MoFaimWebService.Controllers
         {
             var restaurants = _restaurantService.GetAll();
             return Ok(restaurants);
+        }
+
+        [HttpPost]
+        public IActionResult UploadRestaurantImage([FromBody] UploadRestaurantImageDto uploadRestaurantImage)
+        {
+            _restaurantService.InsertImage(uploadRestaurantImage.Path,uploadRestaurantImage.RestaurantId);
+            return Ok();
         }
     }
 }

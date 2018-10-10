@@ -2,6 +2,8 @@
 using MoFaimWebService.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +15,7 @@ namespace MoFaimWebService.Services
         Restaurants GetById(int id);
         Restaurants GetByName(string name);
         Restaurants GetByLocation(string location);
+        void InsertImage(string path, int restaurantId);
     }
 
     public class RestaurantService : IRestaurantService
@@ -42,6 +45,21 @@ namespace MoFaimWebService.Services
         public Restaurants GetByName(string name)
         {
             return _context.Restaurants.Find(name);
+        }
+
+        public void InsertImage(string path, int restaurantId)
+        {
+            Image image = Image.FromFile(path);
+            Byte[] blob = null;
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                blob = ms.ToArray();
+            }
+            Restaurants restaurant = _context.Restaurants.Find(restaurantId);
+
+            restaurant.Logo = blob;
+            _context.SaveChanges();
         }
     }
 }

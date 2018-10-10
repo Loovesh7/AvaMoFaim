@@ -50,7 +50,7 @@ namespace MoFaimWebService.Migrations
 
                     b.Property<string>("Location");
 
-                    b.Property<string>("Logo");
+                    b.Property<byte[]>("Logo");
 
                     b.Property<string>("Name");
 
@@ -65,13 +65,13 @@ namespace MoFaimWebService.Migrations
 
             modelBuilder.Entity("MoFaimWebService.Entities.Role", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Role");
                 });
@@ -96,6 +96,8 @@ namespace MoFaimWebService.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
                 });
 
@@ -119,6 +121,14 @@ namespace MoFaimWebService.Migrations
                     b.HasOne("MoFaimWebService.Entities.Restaurants", "Restaurants")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MoFaimWebService.Entities.User", b =>
+                {
+                    b.HasOne("MoFaimWebService.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
