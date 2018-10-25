@@ -15,6 +15,8 @@ namespace MoFaimWebService.Helpers
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
             CreateMap<UserRatingDto, UserRating>();
+            CreateMap<MenuItems, MenuItemsDto>();
+            CreateMap<MenuItemsDto, MenuItems>();
         }
     }
 }

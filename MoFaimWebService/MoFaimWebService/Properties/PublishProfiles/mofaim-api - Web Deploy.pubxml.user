@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="DataContext">
-      <Value>Server=%28localdb%29\mssqllocaldb%3bDatabase=MoFaimDB%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+      <Value>Server=tcp:midc-mf-db.database.windows.net,1433%3bDatabase=midc-mf-db%3bID=mfAdmin%3bPassword=Adm!1234%40%3b</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
 </Project>

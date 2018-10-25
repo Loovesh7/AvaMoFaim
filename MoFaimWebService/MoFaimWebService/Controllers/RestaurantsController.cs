@@ -13,7 +13,7 @@ using MoFaimWebService.Services;
 
 namespace MoFaimWebService.Controllers
 {
-   
+    
     [ApiController]
     [Route("[controller]")]
     public class RestaurantsController : Controller
@@ -35,9 +35,23 @@ namespace MoFaimWebService.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var restaurants = _restaurantService.GetAll();
-            return Ok(restaurants);
+            IEnumerable<Restaurants> restaurants = _restaurantService.GetAll();
+            if (restaurants != null)
+            {
+                return Ok(restaurants);
+            }
+            return NotFound("Empty"); 
         }
+
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var user = _restaurantService.GetById(id);
+            
+            return Ok(user);
+        }
+
 
         [HttpPost]
         public IActionResult UploadRestaurantImage([FromBody] UploadRestaurantImageDto uploadRestaurantImage)

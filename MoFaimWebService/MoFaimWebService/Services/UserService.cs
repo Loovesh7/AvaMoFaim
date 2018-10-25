@@ -15,7 +15,7 @@ namespace MoFaimWebService.Services
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
-        
+        Role GetUserRole(int RoleId);
     }
 
     public class UserService : IUserService
@@ -54,6 +54,11 @@ namespace MoFaimWebService.Services
         public User GetById(int id)
         {
             return _context.Users.Find(id);
+        }
+
+        public Role GetUserRole(int roleId)
+        {
+            return _context.Role.Find(roleId);
         }
 
         public User Create(User user, string password)

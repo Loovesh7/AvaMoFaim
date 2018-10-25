@@ -12,3 +12,4 @@ C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Debug\ne
 C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Debug\netcoreapp2.1\MoFaimWebService.RazorTargetAssemblyInfo.cache
 C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Debug\netcoreapp2.1\MoFaimWebService.dll
 C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Debug\netcoreapp2.1\MoFaimWebService.pdb
+C:\Users\v.seenundun\source\repos\MoFaimWebService\MoFaimWebService\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs

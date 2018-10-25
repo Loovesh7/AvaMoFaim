@@ -45,6 +45,7 @@ namespace MoFaimWebService.Controllers
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
+            var role = _userService.GetUserRole(user.RoleId);
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -52,7 +53,7 @@ namespace MoFaimWebService.Controllers
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role.Name.ToString())
+                    new Claim(ClaimTypes.Role, role.Name.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -64,11 +65,11 @@ namespace MoFaimWebService.Controllers
             return Ok(new
             {
                 Id = user.Id,
-                Username = user.Email,
+                Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Role = user.Role.Name,
-                Token = tokenString
+                Role = role.Name,
+                Token = "Bearer "+tokenString
             });
         }
 
@@ -80,13 +81,13 @@ namespace MoFaimWebService.Controllers
             var user = _mapper.Map<User>(userDto);
 
             //Default Role is User
-           // user.RoleId = 2;
+            user.RoleId = 2;
 
             try
             {
                 // save 
                 _userService.Create(user, userDto.Password);
-                return Ok();
+                return Authenticate(userDto);
             }
             catch (AppException ex)
             {

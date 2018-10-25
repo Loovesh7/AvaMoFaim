@@ -36,9 +36,24 @@ namespace MoFaimWebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<DataContext>(options => options.UseSqlServer
-            (Configuration.GetConnectionString("DataContext")));
-            //services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDb"));
+            //services.AddDbContext<DataContext>(options => options.UseSqlServer
+            //(Configuration.GetConnectionString("DataContext")));
+
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DataContext")
+                ,sqlServerOptionsAction: sqlOptions =>
+                {
+
+            //Configuring Connection Resiliency:
+            sqlOptions.
+                EnableRetryOnFailure(maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null);
+                }
+                );
+            });
+           
             services.AddMvc();
             services.AddAutoMapper();
 
