@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MoFaim.Services"
+             x:Class="MoFaim.Views.ItemDetailPage"
+             Title="{Binding Title}"
+             BackgroundImage="background.png">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <Style x:Key="baseStyle"
+             TargetType="Label">
+            <Setter Property="XAlign" Value="Start" />
+            <Setter Property="YAlign" Value="Center" />
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="FontAttributes" Value="Italic" />
+        </Style>
+        
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#FBEA74" />
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="HeightRequest" Value="150"/>
+            <Setter Property="WidthRequest" Value="120"/>
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        
+        <Style x:Key="headerLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="TextColor" Value="Blue"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="textLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="test" TargetType="Frame">
+            <Setter Property="HeightRequest" Value="20"/>
+        </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <StackLayout Padding="8">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Frame Style="{StaticResource test}" BackgroundColor="#BF043055" Grid.Row="0" Grid.ColumnSpan="2" >
+                <StackLayout Orientation="Vertical" Spacing="2">
+                    <Label Text="{Binding Item.Location}" FontSize="18" TextColor="White"/>
+                    <Label Text="{Binding Item.Details}" FontSize="10" TextColor="White"/>
+                </StackLayout>
+            </Frame>
+
+            <ScrollView Grid.Row="1" Grid.ColumnSpan="2"  Orientation="Horizontal">
+                <local:ExtendedFlexLayout ItemsSource="{Binding MenuItems}">
+                    <local:ExtendedFlexLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame>
+                                <FlexLayout Direction="Column">
+                                    <Label Text="{Binding Name}" 
+                                        Style="{StaticResource headerLabel}"  HeightRequest="23" LineBreakMode="WordWrap"/>
+                                    <Label Text="{Binding Detail}" 
+                                        Style="{StaticResource textLabel}" HeightRequest="70" LineBreakMode="WordWrap"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Rs " 
+                                        Style="{StaticResource textLabel}" HeightRequest="17"/>
+                                        <Label Text="{Binding Price}" 
+                                        Style="{StaticResource textLabel}" HeightRequest="17"/>
+                                    </StackLayout>
+                                    <Label FlexLayout.Grow="1" />
+                                </FlexLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </local:ExtendedFlexLayout.ItemTemplate>
+                </local:ExtendedFlexLayout>
+            </ScrollView>
+
+            <StackLayout Grid.Row="2" Grid.ColumnSpan="2"  Orientation="Horizontal" HeightRequest="70">
+            <Grid>
+                <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starOne" GroupName="{Binding Item.Name}"/>
+                </Grid.Behaviors>
+                <Image x:Name="starBlankOne"
+                Source="star_outline.png" />
+
+                <Image x:Name="starSelectedOne"
+                Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starOne},
+                                    Path=IsStarred}"/>
+            </Grid>
+            <Grid >
+                <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starTwo" GroupName="{Binding Item.Name}"/>
+                </Grid.Behaviors>
+                <Image x:Name="starBlankTwo"
+                Source="star_outline.png" />
+
+                <Image x:Name="starSelectedTwo"
+                Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starTwo},
+                                    Path=IsStarred}"/>
+            </Grid>
+            <Grid >
+                <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starThree" GroupName="{Binding Item.Name}"/>
+                </Grid.Behaviors>
+                <Image x:Name="starBlankThree"
+                Source="star_outline.png" />
+
+                <Image x:Name="starSelectedThree"
+                Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starThree},
+                                    Path=IsStarred}"/>
+            </Grid>
+            <Grid >
+                <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starFour" GroupName="{Binding Item.Name}"/>
+                </Grid.Behaviors>
+                <Image x:Name="starBlankFour"
+                Source="star_outline.png" />
+
+                <Image x:Name="starSelectedFour"
+                Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starFour},
+                                    Path=IsStarred}"/>
+            </Grid>
+            <Grid >
+                <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starFive" GroupName="{Binding Item.Name}"/>
+                </Grid.Behaviors>
+                <Image x:Name="starBlankFive"
+                Source="star_outline.png" />
+
+                <Image x:Name="starSelectedFive"
+                Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starFive},
+                                    Path=IsStarred}"/>
+            </Grid>
+        </StackLayout>
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="Center">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <local:RatingConverter x:Key="ratingConverter" />
+                        <Style TargetType="Label" BasedOn="{StaticResource baseStyle}">
+                            <Setter Property="TextColor" Value="#4CAF50" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label Text="{Binding Source={x:Reference starFive},
+                                    Path=Rating, Converter={StaticResource ratingConverter}}" FontSize="Small"></Label>
+            </StackLayout>
+
+            <StackLayout Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <Button  Command="{Binding RateCommand}" Text="Rate" TextColor="Black"  
+                    FontAttributes="Bold" FontSize="Small" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="WhiteSmoke"  Image="rate.png"/>
+
+                <Button  Command="{Binding CallCommand}" Text="Call" TextColor="White"  
+                    FontSize="Small" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="Green" Image="call.png"/>
+            </StackLayout>
+        </Grid>
+        
+    </StackLayout>
+    
+    
+</ContentPage>
